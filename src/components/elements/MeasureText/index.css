@@ -1,0 +1,31 @@
+.measureText-container {
+    background-color: var(--color-white);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: fit-content;
+    gap: 100px;
+
+    padding: 8px 24px;
+    border-radius: var(--radius-10);
+
+    & > :nth-child(n) {
+        margin: 0;
+    }
+
+    & > .title {
+        font-size: var(--font-size-30);
+        font-weight: var(--font-weight-bold);
+    }
+
+    & > .content {
+        font-size: var(--font-size-50);
+        font-weight: var(--font-weight-black);
+    }
+
+    & > .volume::after {
+        content: "db";
+        font-size: var(--font-size-20);
+    }
+}
