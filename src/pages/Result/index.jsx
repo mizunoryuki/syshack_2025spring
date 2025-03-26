@@ -7,7 +7,12 @@ export default function Result() {
     return (
         <div className="result-container">
             <Title title={"結果閲覧"} text={"保存"} />
-            <div className="result-box">
+            <div
+                className="result-box"
+                style={{
+                    height: "60%",
+                }}
+            >
                 <div className="result-left">
                     <ResultGraph className="result-left" />
                 </div>
@@ -25,10 +30,15 @@ export default function Result() {
                     />
                 </div>
             </div>
-            <div className="result-buttons-container">
-                <Button text={"もう一度測定"} />
-                <Button text={"ホーム"} />
-                <Button text={"アンケート"} />
+            <div
+                className="result-buttons-container"
+                style={{
+                    height: "10%",
+                }}
+            >
+                <Button logotype="measure" text={"もう一度測定"} />
+                <Button logotype="home" text={"ホーム"} />
+                <Button logotype="question" text={"アンケート"} />
             </div>
         </div>
     );
