@@ -1,0 +1,32 @@
+.result-container {
+    height: 100%;
+}
+
+.result-box {
+    border: 1px solid var(--color-gray);
+    border-radius: var(--radius-10);
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 24px;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.result-left {
+    flex-grow: 1;
+    height: auto;
+    background-color: aqua;
+}
+
+.result-right {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}

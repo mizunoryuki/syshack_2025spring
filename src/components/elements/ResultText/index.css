@@ -1,0 +1,31 @@
+.resultText-container {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    background-color: var(--color-white);
+    padding: 8px 24px;
+    border-radius: var(--radius-10);
+    width: 100%;
+    box-sizing: border-box;
+    gap: 150px;
+}
+
+.resultText-title {
+    margin: 0;
+    white-space: nowrap;
+    font-size: var(--font-size-15);
+    opacity: 0.5;
+    font-weight: var(--font-weight-bold);
+}
+
+.resultText-content {
+    margin: 0;
+    margin-left: auto;
+    font-size: var(--font-size-60);
+    font-weight: var(--font-weight-black);
+}
+
+.volume::after {
+    content: "db";
+    font-size: var(--font-size-20);
+}
