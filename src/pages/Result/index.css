@@ -9,24 +9,39 @@
     height: auto;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     flex-wrap: wrap;
     margin: 0 auto;
     padding: 24px;
     gap: 20px;
     box-sizing: border-box;
+    margin-bottom: 60px;
 }
 
 .result-left {
-    flex-grow: 1;
+    width: 50%;
     height: auto;
-    background-color: aqua;
+    background-color: var(--color-white);
+    border-radius: var(--radius-10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .result-right {
-    width: 400px;
+    width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 30px;
+}
+.result-buttons-container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+
+.result-buttons-container :nth-child(n) {
+    width: fit-content;
 }
