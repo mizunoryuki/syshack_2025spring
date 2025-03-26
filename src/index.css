@@ -10,6 +10,7 @@
     -moz-osx-font-smoothing: grayscale;
 
     --color-white: #ffffff;
+    --color-gray: #e2e2e2;
     --color-purple: #6d6af7;
     --color-green-1: #a6f1e0;
     --color-green-2: #84eac0;
@@ -28,6 +29,7 @@
     --font-size-30: 30px;
     --font-size-40: 40px;
     --font-size-50: 50px;
+    --font-size-60: 60px;
 
     --font-weight-bold: bold;
     --font-weight-black: 900;
