@@ -7,7 +7,6 @@
     border-radius: var(--radius-10);
     width: 100%;
     box-sizing: border-box;
-    gap: 150px;
 }
 
 .resultText-title {
@@ -19,6 +18,7 @@
 }
 
 .resultText-content {
+    width: auto;
     margin: 0;
     margin-left: auto;
     font-size: var(--font-size-60);
