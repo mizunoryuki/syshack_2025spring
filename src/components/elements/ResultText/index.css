@@ -12,7 +12,8 @@
 
 .resultText-title {
     margin: 0;
-    font-size: var(--font-size-20);
+    white-space: nowrap;
+    font-size: var(--font-size-15);
     opacity: 0.5;
     font-weight: var(--font-weight-bold);
 }
