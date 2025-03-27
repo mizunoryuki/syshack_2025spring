@@ -1,0 +1,35 @@
+.question-box {
+    background-color: var(--color-white);
+    border-radius: var(--radius-10);
+    height: 60vh;
+    width: 980px;
+    padding: 20px;
+    margin: 0 auto;
+
+    overflow-y: scroll;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 980px) {
+    .question-box {
+        width: 90%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .question-box {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* ボタンの中央寄せ */
+.question-button {
+    margin: 0 auto;
+}
+.question-button:nth-child(n) {
+    margin-top: 20px;
+    width: fit-content;
+}
