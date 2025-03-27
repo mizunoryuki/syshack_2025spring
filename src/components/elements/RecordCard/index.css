@@ -26,10 +26,6 @@
     color: var(--color-white);
 }
 
-.recordCard-container-header > .header-button:active {
-    box-shadow: var(--shadow-normal);
-}
-
 .title {
     overflow: hidden;
     text-overflow: ellipsis;
