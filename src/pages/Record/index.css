@@ -29,11 +29,10 @@
     }
 }
 
-/* ボタンの中央寄せ */
-.question-button {
+.rocord-button {
     margin: 0 auto;
 }
-.question-button:nth-child(n) {
+.rocord-button:nth-child(n) {
     margin-top: 20px;
     width: fit-content;
 }

@@ -1,8 +1,11 @@
 import RecordCard from "../../components/elements/RecordCard";
 import Title from "../../components/elements/Title";
+import Button from "../../components/elements/Button";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 export default function Record() {
+    const navigate = useNavigate();
     const test_data = [
         {
             date: "2023-10-15",
@@ -68,6 +71,13 @@ export default function Record() {
                 {test_data.map((element, index) => {
                     return <RecordCard props={element} key={index} />;
                 })}
+            </div>
+            <div className="rocord-button">
+                <Button
+                    logotype={"home"}
+                    text={"ホーム"}
+                    Clickfunction={() => navigate("/")}
+                />
             </div>
         </div>
     );

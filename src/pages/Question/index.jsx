@@ -74,25 +74,23 @@ export default function Question() {
     return (
         <div>
             <Title title={"アンケート"} text={"追加"} />
-            <div className="question-container">
-                <div className="question-box">
-                    {test_data.map((element, index) => {
-                        return (
-                            <QuestionCard
-                                props={element}
-                                key={index}
-                                className="question-box-item"
-                            />
-                        );
-                    })}
-                </div>
-                <div className="question-button">
-                    <Button
-                        logotype={"home"}
-                        text={"ホーム"}
-                        Clickfunction={() => navigate("/")}
-                    />
-                </div>
+            <div className="question-box">
+                {test_data.map((element, index) => {
+                    return (
+                        <QuestionCard
+                            props={element}
+                            key={index}
+                            className="question-box-item"
+                        />
+                    );
+                })}
+            </div>
+            <div className="question-button">
+                <Button
+                    logotype={"home"}
+                    text={"ホーム"}
+                    Clickfunction={() => navigate("/")}
+                />
             </div>
         </div>
     );

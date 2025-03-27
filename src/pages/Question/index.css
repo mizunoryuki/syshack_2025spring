@@ -12,6 +12,10 @@
     gap: 20px;
 }
 
+.question-box:nth-child(n) {
+    width: fit-content;
+}
+
 @media (max-width: 980px) {
     .question-box {
         width: 90%;
@@ -25,7 +29,6 @@
     }
 }
 
-/* ボタンの中央寄せ */
 .question-button {
     margin: 0 auto;
 }
