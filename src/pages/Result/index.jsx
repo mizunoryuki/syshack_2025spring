@@ -53,7 +53,6 @@ export default function Result() {
                 <Button logotype="home" text={"ホーム"} />
                 <Button logotype="question" text={"アンケート"} />
             </div>
-            <p>{title}</p>
         </div>
     );
 }

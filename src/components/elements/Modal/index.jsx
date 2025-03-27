@@ -11,14 +11,13 @@ export default function Modal({ setIsOpen, setTitle }) {
 
     const handleClick = () => {
         setTitle(text);
-        console.log("save");
         Navigate("/record"); //過去の履歴に遷移
     };
     return (
         <div className="modal-container">
             <div className="modal-box">
                 <h2 className="modal-box-title">タイトルを入力</h2>
-                <p className="modal-box-warning">テキストを入力</p>
+                <p className="modal-box-warning">テキストを入力してください</p>
                 <input
                     placeholder="タイトル"
                     className="modal-box-input"
