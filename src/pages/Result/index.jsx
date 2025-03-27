@@ -11,7 +11,6 @@ export default function Result() {
     const [isOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState("");
 
-
     return (
         <div className="result-container">
             {isOpen ? (
@@ -56,17 +55,17 @@ export default function Result() {
                 <Button
                     logotype="measure"
                     text={"もう一度測定"}
-                    Clickfunction={() =>navigate("/measure")}
+                    Clickfunction={() => navigate("/measure")}
                 />
                 <Button
                     logotype="home"
                     text={"ホーム"}
-                    Clickfunction={() =>navigate("/")}
+                    Clickfunction={() => navigate("/")}
                 />
                 <Button
                     logotype="question"
                     text={"アンケート"}
-                    Clickfunction={() =>navigate("/question")}
+                    Clickfunction={() => navigate("/question")}
                 />
             </div>
         </div>

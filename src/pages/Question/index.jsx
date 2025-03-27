@@ -2,7 +2,9 @@ import QuestionCard from "../../components/elements/QuestionCard";
 import Title from "../../components/elements/Title";
 import Button from "../../components/elements/Button";
 import "./index.css";
+import { useNavigate } from "react-router-dom";
 export default function Question() {
+    const navigate = useNavigate();
     const test_data = [
         {
             title: "趣味LT感想",
@@ -85,7 +87,11 @@ export default function Question() {
                     })}
                 </div>
                 <div className="question-button">
-                    <Button logotype={"home"} text={"ホーム"} />
+                    <Button
+                        logotype={"home"}
+                        text={"ホーム"}
+                        Clickfunction={() => navigate("/")}
+                    />
                 </div>
             </div>
         </div>
