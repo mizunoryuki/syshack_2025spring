@@ -15,9 +15,9 @@ export default function RecordCard({ props, elemKey }) {
     const sec = String(peakTime % 60).padStart(2, "0");
 
     const handleClick = () => {
-        console.log(volumeArray);
-        navigate(`/result/`, {
+        navigate(`/record/${elemKey}`, {
             state: {
+                title: title,
                 maxdB: maxdB,
                 peakTime: peakTime,
                 excitedLevel: excitedLevel,

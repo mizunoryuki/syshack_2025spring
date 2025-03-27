@@ -25,5 +25,12 @@ export default function ResultText({ type = "", title, content }) {
                 <p className="resultText-content">{content}</p>
             </div>
         );
+    } else {
+        return (
+            <div className="resultText-container">
+                <p className="resultText-title">{title}</p>
+                <p className="resultText-content-noneType">{content}</p>
+            </div>
+        );
     }
 }

@@ -25,6 +25,18 @@
     font-weight: var(--font-weight-black);
 }
 
+.resultText-content-noneType {
+    font-size: var(--font-size-50);
+    margin: 0;
+    width: auto;
+    margin-left: auto;
+    font-weight: var(--font-weight-black);
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+
 .volume::after {
     content: "db";
     font-size: var(--font-size-20);

@@ -50,7 +50,7 @@ export default function ResultGraph({ volumeData = [] }) {
             <LineChart
                 width={500}
                 height={300}
-                data={dB_array}
+                data={data}
                 margin={{
                     top: 5,
                     right: 30,
