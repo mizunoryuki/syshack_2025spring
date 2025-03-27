@@ -8,30 +8,40 @@ import "./index.css";
 //	excitedLevel:number
 //}
 export default function RecordCard({ props }) {
+    const { date, title, maxdB, peakTime, excitedLevel } = props;
+    const min = Math.floor(peakTime / 60);
+    const sec = String(peakTime % 60).padStart(2, "0");
+
+    const handleClick = () => {
+        console.log("click");
+    };
+
     return (
         <div className="recordCard-container">
             <div className="recordCard-container-header">
-                <p className="smallChar">2024-10-13</p>
-                <button className="header-button">くわしくみる</button>
+                <p className="smallChar">{date}</p>
+                <button className="header-button" onClick={handleClick}>
+                    くわしくみる
+                </button>
             </div>
             <div className="recordCard-container-title">
                 <p className="smallChar purpleChar">イベント名</p>
-                <p className="bigChar title">
-                    趣味LT趣味LT趣味LT趣味LT趣味LT趣味LT趣味LT
-                </p>
+                <p className="bigChar title">{title}</p>
             </div>
             <div className="recordCard-box">
                 <div className="recordcard-box-maxdB">
                     <p className="smallChar purpleChar">最高音量</p>
-                    <p className="bigChar">60db</p>
+                    <p className="bigChar db">{maxdB}</p>
                 </div>
                 <div className="recordCard-box-peakTime">
                     <p className="smallChar purpleChar">ピーク時間</p>
-                    <p className="bigChar">3:14</p>
+                    <p className="bigChar">
+                        {min}:{sec}
+                    </p>
                 </div>
                 <div className="recordCard-box-excitedLevel">
                     <p className="smallChar purpleChar">盛り上がり度</p>
-                    <p className="bigChar">51</p>
+                    <p className="bigChar">{excitedLevel}</p>
                 </div>
             </div>
         </div>

@@ -26,6 +26,10 @@
     color: var(--color-white);
 }
 
+.recordCard-container-header > .header-button:active {
+    box-shadow: var(--shadow-normal);
+}
+
 .title {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -41,6 +45,10 @@
     text-align: center;
 }
 
+.db::after {
+    content: "db";
+    font-size: var(--font-size-15);
+}
 .smallChar {
     font-size: var(--font-size-10);
     font-weight: var(--font-weight-bold);
