@@ -3,10 +3,23 @@ import ResultText from "../../components/elements/ResultText";
 import Title from "../../components/elements/Title";
 import Button from "../../components/elements/Button";
 import "./index.css";
+import { useState } from "react";
+import Modal from "../../components/elements/Modal";
 export default function Result() {
+    const [isOpen, setIsOpen] = useState(false);
+    const [title, setTitle] = useState("");
     return (
         <div className="result-container">
-            <Title title={"結果閲覧"} text={"保存"} />
+            {isOpen ? (
+                <Modal setIsOpen={setIsOpen} setTitle={setTitle} />
+            ) : (
+                <></>
+            )}
+            <Title
+                title={"結果閲覧"}
+                text={"保存"}
+                clickFunction={() => setIsOpen(true)}
+            />
             <div
                 className="result-box"
                 style={{
@@ -40,6 +53,7 @@ export default function Result() {
                 <Button logotype="home" text={"ホーム"} />
                 <Button logotype="question" text={"アンケート"} />
             </div>
+            <p>{title}</p>
         </div>
     );
 }
