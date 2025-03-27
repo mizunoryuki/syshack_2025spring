@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 //interface Props = {
 //	date:string??
@@ -7,13 +8,22 @@ import "./index.css";
 //	peakTime:number
 //	excitedLevel:number
 //}
-export default function RecordCard({ props }) {
-    const { date, title, maxdB, peakTime, excitedLevel } = props;
+export default function RecordCard({ props, elemKey }) {
+    const navigate = useNavigate();
+    const { date, title, maxdB, peakTime, excitedLevel, volumeArray } = props;
     const min = Math.floor(peakTime / 60);
     const sec = String(peakTime % 60).padStart(2, "0");
 
     const handleClick = () => {
-        console.log("click");
+        console.log(volumeArray);
+        navigate(`/result/`, {
+            state: {
+                maxdB: maxdB,
+                peakTime: peakTime,
+                excitedLevel: excitedLevel,
+                volumeArray: volumeArray,
+            },
+        });
     };
 
     return (

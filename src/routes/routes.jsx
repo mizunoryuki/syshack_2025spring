@@ -13,6 +13,7 @@ export default function Router() {
             <Route path="/measure" element={<Measure />} />
             <Route path="/result" element={<Result />} />
             <Route path="/question" element={<Question />} />
+            <Route path="/question/:id" element={<Question />} />
             <Route path="/record" element={<Record />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
