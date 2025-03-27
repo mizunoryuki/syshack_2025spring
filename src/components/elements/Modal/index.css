@@ -1,0 +1,75 @@
+.modal-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    padding: 30px 100px;
+    border-radius: var(--radius-10);
+}
+.modal-box-title {
+    font-size: var(--font-size-30);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 0;
+}
+
+.modal-box-warning {
+    margin-top: 30px;
+    font-size: var(--font-size-15);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-red);
+    text-align: center;
+}
+
+.modal-box-input {
+    margin-top: 20px;
+    font-weight: var(--font-weight-bold);
+    padding: 8px;
+    border-radius: var(--radius-10);
+    border: 2px solid var(--color-gray);
+}
+
+.modal-box-buttons {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 20px;
+
+    & > :nth-child(n) {
+        font-size: var(--font-size-15);
+        font-weight: var(--font-weight-bold);
+        border-radius: var(--radius-10);
+        padding: 8px;
+        width: 100%;
+        cursor: pointer;
+    }
+}
+
+.button-cancel {
+    background-color: var(--color-white);
+    border: none;
+}
+
+.button-save {
+    background-color: var(--color-white);
+    color: var(--color-purple);
+    border: 2px solid var(--color-purple);
+}
+
+.button-save:hover {
+    background-color: var(--color-purple);
+    color: var(--color-white);
+    border: 2px solid var(--color-purple);
+    box-shadow: var(--shadow-normal);
+}

@@ -46,7 +46,6 @@ export default function ResultGraph({ volumeData = [] }) {
     dB_array.map((element, index) => {
         test.push({ index: index + 1, volume: element });
     });
-    console.log(test);
     return (
         <ResponsiveContainer width="90%" height="90%">
             <LineChart
