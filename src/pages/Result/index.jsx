@@ -11,7 +11,6 @@ export default function Result() {
     const [isOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState("");
 
-
     return (
         <div className="result-container">
             {isOpen ? (
@@ -34,16 +33,20 @@ export default function Result() {
                     <ResultGraph className="result-left" />
                 </div>
                 <div className="result-right">
-                    <ResultText type="volume" title={"最高音量"} content={50} />
+                    <ResultText
+                        type="volume"
+                        title={"最高音量"}
+                        content={300}
+                    />
                     <ResultText
                         type="timer"
                         title={"ピーク時間"}
-                        content={300}
+                        content={30}
                     />
                     <ResultText
                         type="excited"
                         title={"盛り上がり度"}
-                        content={50}
+                        content={51}
                     />
                 </div>
             </div>
@@ -56,17 +59,17 @@ export default function Result() {
                 <Button
                     logotype="measure"
                     text={"もう一度測定"}
-                    Clickfunction={() =>navigate("/measure")}
+                    Clickfunction={() => navigate("/measure")}
                 />
                 <Button
                     logotype="home"
                     text={"ホーム"}
-                    Clickfunction={() =>navigate("/")}
+                    Clickfunction={() => navigate("/")}
                 />
                 <Button
                     logotype="question"
                     text={"アンケート"}
-                    Clickfunction={() =>navigate("/question")}
+                    Clickfunction={() => navigate("/question")}
                 />
             </div>
         </div>

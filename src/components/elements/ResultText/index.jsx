@@ -8,7 +8,7 @@ export default function ResultText({ type = "", title, content }) {
             </div>
         );
     } else if (type === "timer") {
-        const min = content / 60;
+        const min = Math.floor(content / 60);
         const sec = String(content % 60).padStart(2, "0");
         return (
             <div className="resultText-container">
@@ -23,6 +23,13 @@ export default function ResultText({ type = "", title, content }) {
             <div className="resultText-container">
                 <p className="resultText-title">{title}</p>
                 <p className="resultText-content">{content}</p>
+            </div>
+        );
+    } else {
+        return (
+            <div className="resultText-container">
+                <p className="resultText-title">{title}</p>
+                <p className="resultText-content-noneType">{content}</p>
             </div>
         );
     }

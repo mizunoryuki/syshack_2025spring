@@ -1,0 +1,9 @@
+.result-button {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.result-button:nth-child(n) {
+    width: fit-content;
+    margin-top: 20px;
+}

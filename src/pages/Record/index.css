@@ -1,8 +1,8 @@
-.question-box {
+.record-box {
     background-color: var(--color-white);
     border-radius: var(--radius-10);
     height: 60vh;
-    width: 980px;
+    width: 1093px;
     padding: 20px;
     margin: 0 auto;
 
@@ -12,27 +12,27 @@
     gap: 20px;
 }
 
-.question-box:nth-child(n) {
+.record-box:nth-child(n) {
     width: fit-content;
 }
 
-@media (max-width: 980px) {
-    .question-box {
-        width: 90%;
+@media (max-width: 1093px) {
+    .record-box {
+        width: 100%;
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 768px) {
-    .question-box {
+@media (max-width: 775px) {
+    .record-box {
         grid-template-columns: repeat(1, 1fr);
     }
 }
 
-.question-button {
+.rocord-button {
     margin: 0 auto;
 }
-.question-button:nth-child(n) {
+.rocord-button:nth-child(n) {
     margin-top: 20px;
     width: fit-content;
 }
