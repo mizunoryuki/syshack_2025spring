@@ -8,7 +8,7 @@ export default function MeasureText({ type = "", title, content = "" }) {
             </div>
         );
     } else if (type === "timer") {
-        const min = content / 60;
+        const min = Math.floor(content / 60);
         const sec = String(content % 60).padStart(2, "0");
 
         return (
