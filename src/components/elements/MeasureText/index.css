@@ -5,10 +5,10 @@
     align-items: center;
 
     width: fit-content;
-    gap: 100px;
 
     padding: 8px 24px;
     border-radius: var(--radius-10);
+    gap: 20px;
 
     & > :nth-child(n) {
         margin: 0;
@@ -20,8 +20,11 @@
     }
 
     & > .content {
+        margin-right: auto;
         font-size: var(--font-size-50);
         font-weight: var(--font-weight-black);
+        width: 100%;
+        text-align: right;
     }
 
     & > .volume::after {
