@@ -64,7 +64,7 @@ export default function Result() {
                 <Button
                     logotype="home"
                     text={"ホーム"}
-                    Clickfunction={() => navigate("/")}
+                    Clickfunction={() => navigate("/top")}
                 />
                 <Button
                     logotype="question"

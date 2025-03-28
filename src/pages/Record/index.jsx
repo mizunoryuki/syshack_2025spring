@@ -82,7 +82,7 @@ export default function Record() {
                 <Button
                     logotype={"home"}
                     text={"ホーム"}
-                    Clickfunction={() => navigate("/")}
+                    Clickfunction={() => navigate("/top")}
                 />
             </div>
         </div>

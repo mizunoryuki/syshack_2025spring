@@ -89,7 +89,7 @@ export default function Question() {
                 <Button
                     logotype={"home"}
                     text={"ホーム"}
-                    Clickfunction={() => navigate("/")}
+                    Clickfunction={() => navigate("/top")}
                 />
             </div>
         </div>
