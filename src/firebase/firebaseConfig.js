@@ -1,30 +1,44 @@
 // 必要なSDKから使用する機能をインポート
 import { initializeApp } from "firebase/app";
-import { getAnalytics, isSupported } from "firebase/analytics"; // isSupported を追加
+import { getAnalytics, isSupported } from "firebase/analytics";
+// Firestore の機能をインポート
 import {
   getFirestore,
   collection,
-  addDoc,
   serverTimestamp,
+  query,
+  orderBy,
   getDocs,
+  runTransaction,
+  doc,
+  onSnapshot,
+  where,
 } from "firebase/firestore";
+// Firebase Authentication の機能をインポート
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 // あなたのウェブアプリのFirebase設定
 // Firebase JS SDK v7.20.0以降の場合、measurementIdは任意です
 const firebaseConfig = {
-  apiKey: "AIzaSyCQVI7JQIqHZbQPhWvj7OKtTVvDM4lKJDw",
-  authDomain: "buzztalk-d0484.firebaseapp.com",
-  projectId: "buzztalk-d0484",
-  storageBucket: "buzztalk-d0484.firebasestorage.app",
-  messagingSenderId: "566397443750",
-  appId: "1:566397443750:web:434a8b32ca05a17395de67",
-  measurementId: "G-XGFH94VMVR",
+  apiKey: "AIzaSyDCTTpjLtI8H6qbm1xeehQzLuZgMvCVm6A",
+  authDomain: "qrtest-77295.firebaseapp.com",
+  projectId: "qrtest-77295",
+  storageBucket: "qrtest-77295.firebasestorage.app",
+  messagingSenderId: "598967892397",
+  appId: "1:598967892397:web:6c0ef987086402942ec924",
+  measurementId: "G-3G0RBH5SL1",
 };
 
 // Firebaseの初期化
 const app = initializeApp(firebaseConfig);
 
-// Analyticsの初期化（サポートされている場合のみ）
+// Analyticsの初期化
 let analytics;
 isSupported().then((supported) => {
   if (supported) {
@@ -35,6 +49,59 @@ isSupported().then((supported) => {
 });
 
 export { app, analytics };
+
+// Auth インスタンスの生成
+const auth = getAuth(app);
+
+// 認証状態を監視する関数
+export function subscribeToAuthState(callback) {
+  return onAuthStateChanged(auth, (user) => {
+    callback(user);
+  });
+}
+
+// ユーザー登録関数
+export async function registerUser(email, password) {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    return userCredential.user;
+  } catch (error) {
+    console.error("ユーザー登録中にエラーが発生しました:", error);
+    throw error;
+  }
+}
+
+// ログイン関数
+export async function loginUser(email, password) {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    return userCredential.user;
+  } catch (error) {
+    console.error("ログイン中にエラーが発生しました:", error);
+    throw error;
+  }
+}
+
+// ログアウト関数
+export async function logoutUser() {
+  try {
+    await signOut(auth);
+    console.log("ログアウトしました");
+  } catch (error) {
+    console.error("ログアウト中にエラーが発生しました:", error);
+    throw error;
+  }
+}
+
+export { auth };
 
 // Firestore インスタンスの生成
 const db = getFirestore(app);
@@ -54,21 +121,51 @@ const db = getFirestore(app);
  */
 export async function saveEvent(eventData) {
   try {
-    const docRef = await addDoc(collection(db, "events"), {
-      ...eventData,
-      date: serverTimestamp(),
+    // 現在ログインしているユーザーを取得
+    const user = auth.currentUser;
+
+    // ユーザーがログインしていない場合はエラーを投げる
+    if (!user) {
+      throw new Error("ユーザーがログインしていません。");
+    }
+
+    const eventRef = doc(collection(db, "events"));
+    await runTransaction(db, async (transaction) => {
+      transaction.set(eventRef, {
+        ...eventData,
+        userId: user.uid, // ユーザーIDを追加
+        date: serverTimestamp(),
+      });
     });
-    console.log("ドキュメントが追加されました:", docRef.id);
-    return docRef.id;
+    console.log("トランザクションが成功しました！ドキュメントID:", eventRef.id);
+    return eventRef.id;
   } catch (e) {
-    console.error("ドキュメントの追加中にエラーが発生しました:", e);
+    console.error("トランザクション中にエラーが発生しました:", e);
+    throw e;
   }
 }
 
-// Firestoreからイベントデータを取得する関数
+// Firestoreからログインユーザー自身のイベントデータのみ取得する関数
 export async function getEvents() {
   try {
-    const querySnapshot = await getDocs(collection(db, "events"));
+    // 現在ログインしているユーザーを取得
+    const user = auth.currentUser;
+
+    // ユーザーがログインしていない場合は空の配列を返す
+    if (!user) {
+      console.warn("ユーザーがログインしていません。データを取得できません。");
+      return [];
+    }
+
+    // ログインユーザーのイベントのみをクエリで取得
+    const eventsQuery = query(
+      collection(db, "events"),
+      // ユーザーIDでフィルタリング
+      where("userId", "==", user.uid),
+      orderBy("date", "desc")
+    );
+
+    const querySnapshot = await getDocs(eventsQuery);
     const events = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -78,4 +175,36 @@ export async function getEvents() {
     console.error("ドキュメントの取得中にエラーが発生しました:", error);
     return [];
   }
+}
+
+// Firestoreからログインユーザー自身のイベントデータをリアルタイムで取得する関数
+export function subscribeToEvents(callback) {
+  // 現在ログインしているユーザーを取得
+  const user = auth.currentUser;
+
+  // ユーザーがログインしていない場合
+  if (!user) {
+    console.warn(
+      "ユーザーがログインしていません。データをサブスクライブできません。"
+    );
+    callback([]); // 空の配列を返す
+    return () => {}; // ダミーの解除関数
+  }
+
+  // ログインユーザーのイベントのみをサブスクライブ
+  const eventsQuery = query(
+    collection(db, "events"),
+    where("userId", "==", user.uid),
+    orderBy("date", "desc")
+  );
+
+  const unsubscribe = onSnapshot(eventsQuery, (snapshot) => {
+    const events = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    callback(events);
+  });
+
+  return unsubscribe;
 }

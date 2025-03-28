@@ -1,13 +1,18 @@
 // 必要なモジュールやコンポーネントをインポート
 import { useState, useEffect } from "react";
-import { saveEvent, getEvents } from "../../firebase/firebaseConfig"; // Firebaseにデータを保存する関数
+import { useNavigate } from "react-router-dom"; // useNavigate をインポート
+import {
+  saveEvent,
+  getEvents,
+  subscribeToEvents,
+} from "../../firebase/firebaseConfig"; // Firebaseにデータを保存する関数
 import ResultGraph from "../../components/elements/ResultGraph";
 import ResultText from "../../components/elements/ResultText";
 import Title from "../../components/elements/Title";
 import Button from "../../components/elements/Button";
 import "./index.css";
 
-// 記録入力ページのコンポーネント
+// 記録閲覧ページのコンポーネント
 export default function Record() {
   // 各入力フィールドの状態を管理するためのuseStateフック
   const [eventName, setEventName] = useState(""); // イベント名
@@ -16,6 +21,7 @@ export default function Record() {
   const [excitedLevel, setExcitedLevel] = useState(""); // 盛り上がり度
   const [dbArray, setDbArray] = useState(""); // 音量データの配列（カンマ区切り文字列）
   const [records, setRecords] = useState([]); // 取得したイベントデータのstateを追加
+  const navigate = useNavigate();
 
   // データをFirebaseに保存する関数
   const handleSave = async () => {
@@ -48,7 +54,12 @@ export default function Record() {
     setRecords(data);
   };
   useEffect(() => {
-    fetchRecords();
+    const unsubscribe = subscribeToEvents((data) => {
+      setRecords(data); // リアルタイムでデータを更新
+    });
+
+    // クリーンアップ関数で購読を解除
+    return () => unsubscribe();
   }, []);
 
   // ページのレンダリング
@@ -156,6 +167,10 @@ export default function Record() {
             </div>
           </div>
         ))}
+      </div>
+      {/* ホームに戻るボタン */}
+      <div className="home-button-container">
+        <Button text={"ホーム"} Clickfunction={() => navigate("/")} />
       </div>
     </div>
   );
