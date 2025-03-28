@@ -5,9 +5,13 @@ import Button from "../../components/elements/Button";
 import "./index.css";
 import { useState } from "react";
 import Modal from "../../components/elements/Modal";
+import { useNavigate } from "react-router-dom";
 export default function Result() {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState("");
+
+
     return (
         <div className="result-container">
             {isOpen ? (
@@ -49,9 +53,21 @@ export default function Result() {
                     height: "10%",
                 }}
             >
-                <Button logotype="measure" text={"もう一度測定"} />
-                <Button logotype="home" text={"ホーム"} />
-                <Button logotype="question" text={"アンケート"} />
+                <Button
+                    logotype="measure"
+                    text={"もう一度測定"}
+                    Clickfunction={() =>navigate("/measure")}
+                />
+                <Button
+                    logotype="home"
+                    text={"ホーム"}
+                    Clickfunction={() =>navigate("/")}
+                />
+                <Button
+                    logotype="question"
+                    text={"アンケート"}
+                    Clickfunction={() =>navigate("/question")}
+                />
             </div>
         </div>
     );
