@@ -41,11 +41,10 @@ const data = [
     },
 ];
 export default function ResultGraph({ volumeData = [] }) {
-    const dB_array = [20, 30, 40, 20, 30];
-    const test = [];
-    dB_array.map((element, index) => {
-        test.push({ index: index + 1, volume: element });
+    const dB_array = volumeData.map((element, index) => {
+        return { index: index + 1, volume: element };
     });
+
     return (
         <ResponsiveContainer width="90%" height="90%">
             <LineChart

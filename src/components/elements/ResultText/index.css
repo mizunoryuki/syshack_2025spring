@@ -23,6 +23,19 @@
     margin-left: auto;
     font-size: var(--font-size-60);
     font-weight: var(--font-weight-black);
+    text-align: right;
+}
+
+.resultText-content-noneType {
+    font-size: var(--font-size-50);
+    margin: 0;
+    width: auto;
+    margin-left: auto;
+    font-weight: var(--font-weight-black);
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-wrap: nowrap;
 }
 
 .volume::after {
