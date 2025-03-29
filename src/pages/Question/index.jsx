@@ -52,6 +52,11 @@ export default function Question() {
                     window.open("https://docs.google.com/forms/u/0/", "_blank");
                 }}
             />
+
+            <div className="question-refresh-button">
+                <Button text="更新" Clickfunction={fetchForms} />
+            </div>
+
             {!loaded && (
                 <div className="question-load-button">
                     <div className="button">
