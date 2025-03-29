@@ -5,7 +5,7 @@ import Result from "../pages/Result";
 import NotFound from "../pages/Notfound";
 import Question from "../pages/Question";
 import QuestionDetail from "../pages/QuestionDetail";
-import Record from "../pages/Record";
+import Record from "../pages/record";
 import ResultDetail from "../pages/ResultDetail";
 import LoginPage from "../pages/Login";
 import PrivateRoute from "./PrivateRoute";

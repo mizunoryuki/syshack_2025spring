@@ -1,23 +1,31 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
-export default function Modal({ setIsOpen, setTitle }) {
+export default function Modal({ setIsOpen, setData, setIsSave }) {
     const Navigate = useNavigate();
     const [text, setText] = useState("");
+    const [isFill, setIsFill] = useState(false);
 
     const handleChange = (e) => {
         setText(e.target.value);
     };
 
     const handleClick = () => {
-        setTitle(text);
-        Navigate("/record"); //過去の履歴に遷移
+        if (text) {
+            setData((prev) => ({ ...prev, title: text }));
+            setIsSave(true);
+            setIsOpen(false);
+        } else {
+            setIsFill(true);
+        }
     };
     return (
         <div className="modal-container">
             <div className="modal-box">
                 <h2 className="modal-box-title">タイトルを入力</h2>
-                <p className="modal-box-warning">テキストを入力してください</p>
+                <p className="modal-box-warning">
+                    {isFill && "テキストを入力してください"}
+                </p>
                 <input
                     placeholder="タイトル"
                     className="modal-box-input"
