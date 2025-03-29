@@ -1,0 +1,45 @@
+/* 全体背景と配置 */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f7;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+/* ログインカード */
+.login-card {
+    background-color: white;
+    padding: 3rem 4rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* タイトル */
+.login-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* Googleログインボタン */
+.login-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    color: #7c3aed;
+    background-color: #fff;
+    border: 2px solid #7c3aed;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.login-button:hover {
+    background-color: #ede9fe;
+}
