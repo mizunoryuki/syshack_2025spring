@@ -10,6 +10,7 @@
         font-size: var(--font-size-40);
         color: var(--color-green-3);
         font-weight: var(--font-weight-bold);
+        min-height: var(--font-size-40);
     }
 
     & > .title-button {
