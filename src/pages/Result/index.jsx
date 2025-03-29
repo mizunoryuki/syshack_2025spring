@@ -3,24 +3,49 @@ import ResultText from "../../components/elements/ResultText";
 import Title from "../../components/elements/Title";
 import Button from "../../components/elements/Button";
 import "./index.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "../../components/elements/Modal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { calcMaxVolume } from "../../utils/calcMaxVolumeAndPeakTime";
+import { calcExcitedLevel } from "../../utils/calcExcitedLevel";
 export default function Result() {
     const navigate = useNavigate();
-    const [isOpen, setIsOpen] = useState(false);
-    const [title, setTitle] = useState("");
+    const location = useLocation();
+    const [isOpen, setIsOpen] = useState(false); //モーダル開閉を管理
+    const [isSave, setIsSave] = useState(false); //履歴の保存を管理
+    const [data, setData] = useState({
+        volumeArray: [],
+        maxdB: 0,
+        peakTime: 0,
+        excitedLevel: 0,
+        title: "",
+    });
+    useEffect(() => {
+        const data = location.state;
+        const { maxdB, peakTime } = calcMaxVolume(data.volume);
+        const excitedLevel = calcExcitedLevel(data.volume);
+        console.log(excitedLevel);
+        setData({
+            ...data,
+            volumeArray: data.volume,
+            maxdB: maxdB,
+            peakTime: peakTime,
+            excitedLevel: excitedLevel,
+        });
+    }, [location]);
 
     return (
         <div className="result-container">
-            {isOpen ? (
-                <Modal setIsOpen={setIsOpen} setTitle={setTitle} />
-            ) : (
-                <></>
+            {isOpen && (
+                <Modal
+                    setIsOpen={setIsOpen}
+                    setData={setData}
+                    setIsSave={setIsSave}
+                />
             )}
             <Title
                 title={"結果閲覧"}
-                text={"保存"}
+                text={isSave ? "" : "保存"}
                 clickFunction={() => setIsOpen(true)}
             />
             <div
@@ -30,23 +55,27 @@ export default function Result() {
                 }}
             >
                 <div className="result-left">
-                    <ResultGraph className="result-left" />
+                    <ResultGraph
+                        className="result-left"
+                        volumeData={data.volumeArray}
+                    />
                 </div>
                 <div className="result-right">
+                    <ResultText title={"イベント名"} content={data.title} />
                     <ResultText
                         type="volume"
                         title={"最高音量"}
-                        content={300}
+                        content={data.maxdB}
                     />
                     <ResultText
                         type="timer"
                         title={"ピーク時間"}
-                        content={30}
+                        content={data.peakTime}
                     />
                     <ResultText
                         type="excited"
                         title={"盛り上がり度"}
-                        content={51}
+                        content={data.excitedLevel}
                     />
                 </div>
             </div>

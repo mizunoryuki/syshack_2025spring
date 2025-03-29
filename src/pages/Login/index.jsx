@@ -8,7 +8,9 @@ export default function LoginPage() {
 
     const handleLogin = async () => {
         try {
-            provider.addScope("https://www.googleapis.com/auth/drive.metadata.readonly");
+            provider.addScope(
+                "https://www.googleapis.com/auth/drive.metadata.readonly"
+            );
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
             navigate("/top");
