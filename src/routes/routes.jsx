@@ -9,7 +9,7 @@ import Record from "../pages/Record";
 import ResultDetail from "../pages/ResultDetail";
 import LoginPage from "../pages/Login";
 import PrivateRoute from "./PrivateRoute";
-export default function Router({ user, onLogin, forms }) {
+export default function Router({ user, onLogin, forms, onLogout }) {
     return (
         <Routes>
             <Route path="/" element={<Navigate to="/login" />} />
@@ -20,7 +20,7 @@ export default function Router({ user, onLogin, forms }) {
                 path="/top"
                 element={
                     <PrivateRoute user={user}>
-                        <Top user={user} forms={forms} />
+                        <Top user={user} forms={forms} onLogout={onLogout} />
                     </PrivateRoute>
                 }
             />
