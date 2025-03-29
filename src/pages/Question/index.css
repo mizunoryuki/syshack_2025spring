@@ -89,7 +89,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.2s ease;
 }
 
 .icon-button:hover {
@@ -111,7 +110,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.2s ease;
     z-index: 5;
 }
 
