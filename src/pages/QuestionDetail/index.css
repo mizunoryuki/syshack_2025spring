@@ -4,7 +4,6 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f9fafb;
     padding: 1rem;
     box-sizing: border-box;
 }
@@ -14,14 +13,22 @@
     font-weight: 600;
     margin-bottom: 1.5rem;
     text-align: center;
+    text-wrap: nowrap;
+    overflow: hidden;
 }
 
 .qr-box {
-    background-color: #ffffff;
+    background-color: var(--color-white);
     padding: 1.5rem;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     margin-bottom: 1.5rem;
+}
+
+.qr-code {
+    height: auto;
+    min-width: 100%;
+    width: 100%;
 }
 
 .qr-buttons {
@@ -32,17 +39,16 @@
 }
 
 .qr-buttons button {
-    background-color: #6366f1;
-    color: white;
+    background-color: var(--color-purple);
+    color: var(--color-white);
     padding: 10px 20px;
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: var(--font-size-15);
+    font-weight: var(--font-weight-black);
     border: none;
-    border-radius: 10px;
+    border-radius: var(--radius-10);
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .qr-buttons button:hover {
-    background-color: #4f46e5;
+    background-color: var(--color-purple);
 }

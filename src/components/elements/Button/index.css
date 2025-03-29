@@ -14,6 +14,7 @@
     justify-content: center;
     position: relative;
     padding: 15px 80px;
+    cursor: pointer;
 }
 
 .icon {
