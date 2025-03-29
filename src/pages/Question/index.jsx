@@ -4,6 +4,7 @@ import Title from "../../components/elements/Title";
 import Button from "../../components/elements/Button";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
+import { FiRefreshCw } from "react-icons/fi";
 
 export default function Question() {
     const navigate = useNavigate();
@@ -52,6 +53,7 @@ export default function Question() {
                     window.open("https://docs.google.com/forms/u/0/", "_blank");
                 }}
             />
+
             {!loaded && (
                 <div className="question-load-button">
                     <div className="button">
@@ -60,20 +62,25 @@ export default function Question() {
                 </div>
             )}
             {loaded && (
-                <div className="question-box">
-                    {forms.map((form, index) => {
-                        const element = {
-                            title: form.name,
-                            url: `https://docs.google.com/forms/d/${form.id}/viewform`,
-                        };
-                        return (
-                            <QuestionCard
-                                props={element}
-                                key={index}
-                                className="question-box-item"
-                            />
-                        );
-                    })}
+                <div className="question-box-container">
+                    <div className="question-box">
+                        <button className="icon-button refresh-icon" onClick={fetchForms}>
+                            <FiRefreshCw size={22} />
+                        </button>
+                        {forms.map((form, index) => {
+                            const element = {
+                                title: form.name,
+                                url: `https://docs.google.com/forms/d/${form.id}/viewform`,
+                            };
+                            return (
+                                <QuestionCard
+                                    props={element}
+                                    key={index}
+                                    className="question-box-item"
+                                />
+                            );
+                        })}
+                    </div>
                 </div>
             )}
             <div className="question-button">
