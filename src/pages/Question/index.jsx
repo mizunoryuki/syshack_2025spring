@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuestionCard from "../../components/elements/QuestionCard";
 import Title from "../../components/elements/Title";
 import Button from "../../components/elements/Button";
@@ -9,6 +9,14 @@ export default function Question() {
     const navigate = useNavigate();
     const [forms, setForms] = useState([]);
     const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        const savedForms = localStorage.getItem("forms");
+        if (savedForms) {
+            setForms(JSON.parse(savedForms));
+            setLoaded(true);
+        }
+    }, []);
 
     const fetchForms = async () => {
         const accessToken = localStorage.getItem("accessToken"); // または props等で受け取る
@@ -26,6 +34,7 @@ export default function Question() {
             if (data.files) {
                 setForms(data.files);
                 setLoaded(true);
+                localStorage.setItem("forms", JSON.stringify(data.files));
             } else {
                 console.error("フォーム取得失敗:", data);
             }
@@ -36,7 +45,13 @@ export default function Question() {
 
     return (
         <div>
-            <Title title={"アンケート"} text={"追加"} />
+            <Title
+                title={"アンケート"}
+                text={"追加"}
+                clickFunction={() => {
+                    window.open("https://docs.google.com/forms/u/0/", "_blank");
+                }}
+            />
             {!loaded && (
                 <div className="question-load-button">
                     <div className="button">
