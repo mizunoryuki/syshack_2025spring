@@ -39,9 +39,16 @@ function App() {
         }
     }, [accessToken]);
 
+    const handleLogout = () => {
+        setUser(null);
+        setAccessToken(null);
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("forms");
+    };
+
     // ↓ Routerに props を渡す（ログイン状態やforms）
     return (
-        <Router user={user} onLogin={handleLogin} forms={forms} />
+        <Router user={user} onLogin={handleLogin} forms={forms} onLogout={handleLogout} />
     );
 }
 

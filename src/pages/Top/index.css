@@ -13,3 +13,9 @@
     flex-direction: column;
     gap: 112px;
 }
+
+.top-logout {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
