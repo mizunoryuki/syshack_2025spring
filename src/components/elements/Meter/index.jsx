@@ -38,5 +38,4 @@ const Meter = ({ isdone, isRunning, showdB, count, onStart, onFinish }) => {
     );
 };
 
-// 🎯 memo化して不要な再レンダリングを防ぐ
 export default memo(Meter);

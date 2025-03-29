@@ -19,6 +19,7 @@ export default function Measure() {
         <div
             className="measure-container"
             style={{
+                width: "100%",
                 height: "60%",
             }}
         >

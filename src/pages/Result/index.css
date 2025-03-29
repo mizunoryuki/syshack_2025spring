@@ -20,14 +20,12 @@
 
 .result-left {
     width: 50%;
-    height: 100%;
     background-color: var(--color-white);
     border-radius: var(--radius-10);
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    
 }
 
 .result-right {
@@ -36,15 +34,40 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 .result-buttons-container {
     width: 80%;
+    height: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin: 0 auto;
 }
 
 .result-buttons-container :nth-child(n) {
     width: fit-content;
+}
+
+@media (max-width: 900px) {
+    .result-buttons-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .result-box {
+        flex-direction: column;
+        gap: 10px;
+
+        > .result-left {
+            width: 100%;
+        }
+
+        > .result-right {
+            width: 100%;
+            gap: 10px;
+        }
+    }
 }
