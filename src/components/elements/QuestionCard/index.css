@@ -2,51 +2,52 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.2rem 1.5rem;
-    border-radius: 16px;
+    padding: 16px;
+    border-radius: var(--radius-10);
+    border: 1px solid var(--color-gray);
     background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     width: 300px;
     height: 120px;
-    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .card-left {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex: 1;
 }
 
 .card-title {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: var(--font-size-20);
+    font-weight: var(--font-weight-bold);
     margin-bottom: 0.6rem;
-    color: #111827;
+    width: 10rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .questionCard-button {
-    background-color: #6366f1;
-    color: #fff;
-    padding: 8px 16px;
+    background-color: var(--color-purple);
+    color: var(--color-white);
+    padding: 8px;
     border: none;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    font-weight: 500;
+    border-radius: var(--radius-3);
+    font-size: var(--font-size-10);
+    font-weight: var(--font-weight-black);
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: fit-content;
 }
 
 .questionCard-button:hover {
-    background-color: #4f46e5;
+    background-color: var(--color-purple);
 }
 
 .card-divider {
     width: 1px;
     height: 80%;
-    background-color: #e5e7eb;
-    margin: 0 1rem;
+    background-color: var(--color-gray);
 }
 
 .card-right {

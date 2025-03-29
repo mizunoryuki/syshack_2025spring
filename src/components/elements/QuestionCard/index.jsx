@@ -16,7 +16,7 @@ export default function QuestionCard({ props }) {
     return (
         <div className="questionCard">
             <div className="card-left">
-                <div className="card-title">{props.title}</div>
+                <p className="card-title">{props.title}</p>
                 <button
                     className="questionCard-button"
                     onClick={() =>
