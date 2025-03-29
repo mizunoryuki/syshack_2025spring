@@ -29,6 +29,7 @@
     font-weight: var(--font-weight-bold);
     color: var(--color-red);
     text-align: center;
+    height: 1em;
 }
 
 .modal-box-input {

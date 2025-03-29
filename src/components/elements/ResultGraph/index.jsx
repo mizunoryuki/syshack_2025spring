@@ -16,7 +16,7 @@ export default function ResultGraph({ volumeData = [] }) {
     });
 
     return (
-        <ResponsiveContainer width="90%" height="90%">
+        <ResponsiveContainer width="90%" height="70%">
             <LineChart
                 width={500}
                 height={300}

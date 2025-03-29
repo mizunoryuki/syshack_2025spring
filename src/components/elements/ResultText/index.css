@@ -1,11 +1,11 @@
 .resultText-container {
     display: flex;
     flex-direction: row;
-    width: fit-content;
     background-color: var(--color-white);
     padding: 8px 24px;
     border-radius: var(--radius-10);
     width: 100%;
+    height: calc(100% / 4 - 20px);
     box-sizing: border-box;
 }
 
@@ -15,6 +15,7 @@
     font-size: var(--font-size-15);
     opacity: 0.5;
     font-weight: var(--font-weight-bold);
+    height: 100%;
 }
 
 .resultText-content {
@@ -36,6 +37,8 @@
     text-overflow: ellipsis;
     overflow: hidden;
     text-wrap: nowrap;
+
+    min-height: 1rem;
 }
 
 .volume::after {
