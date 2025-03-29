@@ -36,11 +36,3 @@
         grid-template-columns: repeat(1, 1fr);
     }
 }
-
-.rocord-button {
-    margin: 0 auto;
-}
-.rocord-button:nth-child(n) {
-    margin-top: 20px;
-    width: fit-content;
-}
