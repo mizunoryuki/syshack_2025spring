@@ -13,36 +13,7 @@ export default function ResultDetail() {
         maxdB: 50,
         peakTime: 300,
         excitedLevel: 51,
-        volumeArray: [
-            {
-                index: 1,
-                volume: 40,
-            },
-            {
-                index: 2,
-                volume: 30,
-            },
-            {
-                index: 3,
-                volume: 20,
-            },
-            {
-                index: 4,
-                volume: 27,
-            },
-            {
-                index: 5,
-                volume: 18,
-            },
-            {
-                index: 6,
-                volume: 23,
-            },
-            {
-                index: 7,
-                volume: 34,
-            },
-        ],
+        volumeArray: [],
     });
     useEffect(() => {
         setData({
@@ -63,7 +34,10 @@ export default function ResultDetail() {
                 }}
             >
                 <div className="result-left">
-                    <ResultGraph className="result-left" />
+                    <ResultGraph
+                        className="result-left"
+                        volumeData={data.volumeArray}
+                    />
                 </div>
                 <div className="result-right">
                     <ResultText title={"イベント名"} content={data.title} />
