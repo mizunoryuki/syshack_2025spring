@@ -3,14 +3,33 @@ import ResultText from "../../components/elements/ResultText";
 import Title from "../../components/elements/Title";
 import Button from "../../components/elements/Button";
 import "./index.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "../../components/elements/Modal";
 import { useNavigate, useLocation } from "react-router-dom";
+import { calcMaxVolume } from "../../utils/calcMaxVolumeAndPeakTime";
 export default function Result() {
     const navigate = useNavigate();
     const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState("");
+    const [data, setData] = useState({
+        volumeArray: [],
+        maxdB: 0,
+        peakTime: 0,
+        excitedLevel: 0,
+        title: "",
+    });
+    useEffect(() => {
+        const data = location.state;
+        const { maxdB, peakTime } = calcMaxVolume(data.volume);
+        setData({
+            ...data,
+            volumeArray: data.volume,
+            maxdB: maxdB,
+            peakTime: peakTime,
+            excitedLevel: 50,
+        });
+    }, [location]);
 
     return (
         <div className="result-container">
@@ -31,23 +50,26 @@ export default function Result() {
                 }}
             >
                 <div className="result-left">
-                    <ResultGraph className="result-left" />
+                    <ResultGraph
+                        className="result-left"
+                        volumeData={data.volumeArray}
+                    />
                 </div>
                 <div className="result-right">
                     <ResultText
                         type="volume"
                         title={"最高音量"}
-                        content={300}
+                        content={data.maxdB}
                     />
                     <ResultText
                         type="timer"
                         title={"ピーク時間"}
-                        content={30}
+                        content={data.peakTime}
                     />
                     <ResultText
                         type="excited"
                         title={"盛り上がり度"}
-                        content={51}
+                        content={data.excitedLevel}
                     />
                 </div>
             </div>
