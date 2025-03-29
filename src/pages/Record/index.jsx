@@ -3,8 +3,8 @@ import RecordCard from "../../components/elements/RecordCard";
 import Title from "../../components/elements/Title";
 import Button from "../../components/elements/Button";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebase"; // Firebase認証を追加
-import { getEvents, saveEvent } from "../../firebase/firebaseConfig"; // saveEventも追加
+import { auth } from "../../firebase";
+import { getEvents, saveEvent } from "../../firebase/firebaseConfig";
 import "./index.css";
 
 export default function Record() {

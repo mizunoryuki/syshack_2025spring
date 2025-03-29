@@ -16,7 +16,7 @@ import {
 } from "firebase/firestore";
 
 // Firebase Authentication は外部ファイルからインポート
-import { auth } from "../firebase"; // 修正：authを別ファイルからインポート
+import { auth } from "../firebase";
 
 // あなたのウェブアプリのFirebase設定
 // Firebase JS SDK v7.20.0以降の場合、measurementIdは任意です
