@@ -2,10 +2,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Top from "../pages/Top";
 import Measure from "../pages/Measure";
 import Result from "../pages/Result";
-import Record from "../pages/record";
 import NotFound from "../pages/Notfound";
 import Question from "../pages/Question";
-import Record from "../pages/Record";
+import Record from "../pages/record";
 import ResultDetail from "../pages/ResultDetail";
 import LoginPage from "../pages/Login";
 export default function Router({ user, onLogin, forms }) {

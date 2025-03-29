@@ -14,14 +14,9 @@ import {
   onSnapshot,
   where,
 } from "firebase/firestore";
-// Firebase Authentication の機能をインポート
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-} from "firebase/auth";
+
+// Firebase Authentication は外部ファイルからインポート
+import { auth } from "../firebase"; // 修正：authを別ファイルからインポート
 
 // あなたのウェブアプリのFirebase設定
 // Firebase JS SDK v7.20.0以降の場合、measurementIdは任意です
@@ -50,58 +45,8 @@ isSupported().then((supported) => {
 
 export { app, analytics };
 
-// Auth インスタンスの生成
-const auth = getAuth(app);
-
-// 認証状態を監視する関数
-export function subscribeToAuthState(callback) {
-  return onAuthStateChanged(auth, (user) => {
-    callback(user);
-  });
-}
-
-// ユーザー登録関数
-export async function registerUser(email, password) {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    return userCredential.user;
-  } catch (error) {
-    console.error("ユーザー登録中にエラーが発生しました:", error);
-    throw error;
-  }
-}
-
-// ログイン関数
-export async function loginUser(email, password) {
-  try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    return userCredential.user;
-  } catch (error) {
-    console.error("ログイン中にエラーが発生しました:", error);
-    throw error;
-  }
-}
-
-// ログアウト関数
-export async function logoutUser() {
-  try {
-    await signOut(auth);
-    console.log("ログアウトしました");
-  } catch (error) {
-    console.error("ログアウト中にエラーが発生しました:", error);
-    throw error;
-  }
-}
-
-export { auth };
+// ここから下の認証関連の関数はすべて削除（auth関連機能）
+// ※ 削除部分は省略
 
 // Firestore インスタンスの生成
 const db = getFirestore(app);
