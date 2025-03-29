@@ -14,6 +14,7 @@
     }
 
     & > .title-button {
+        cursor: pointer;
         margin-left: auto;
         display: flex;
         flex-direction: row;

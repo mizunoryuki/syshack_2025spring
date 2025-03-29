@@ -81,7 +81,7 @@
 .icon-button {
     width: 48px;
     height: 48px;
-    border-radius: 12px;
+    border-radius: 50%;
     border: 2px solid var(--color-purple);
     background-color: var(--color-white);
     color: var(--color-purple);
@@ -92,28 +92,6 @@
 }
 
 .icon-button:hover {
-    background-color: var(--color-purple);
-    color: var(--color-white);
-}
-
-.refresh-icon-button {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    border: 2px solid var(--color-purple);
-    background-color: var(--color-white);
-    color: var(--color-purple);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 5;
-}
-
-.refresh-icon-button:hover {
     background-color: var(--color-purple);
     color: var(--color-white);
 }
