@@ -1,90 +1,81 @@
+import { useEffect, useState } from "react";
 import QuestionCard from "../../components/elements/QuestionCard";
 import Title from "../../components/elements/Title";
 import Button from "../../components/elements/Button";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
+
 export default function Question() {
     const navigate = useNavigate();
-    const test_data = [
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想ｱｲｳｴｵﾌｧｲﾌｴｱｵｲｼﾞｭｲ",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-        {
-            title: "趣味LT感想",
-            url: "https://www.google.com",
-        },
-    ];
+    const [forms, setForms] = useState([]);
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        const savedForms = localStorage.getItem("forms");
+        if (savedForms) {
+            setForms(JSON.parse(savedForms));
+            setLoaded(true);
+        }
+    }, []);
+
+    const fetchForms = async () => {
+        const accessToken = localStorage.getItem("accessToken"); // または props等で受け取る
+        if (!accessToken) {
+            console.error("アクセストークンがありません");
+            return;
+        }
+
+        try {
+            const res = await fetch(
+                `https://www.googleapis.com/drive/v3/files?q=mimeType='application/vnd.google-apps.form'&fields=files(id,name)&access_token=${accessToken}`
+            );
+            const data = await res.json();
+
+            if (data.files) {
+                setForms(data.files);
+                setLoaded(true);
+                localStorage.setItem("forms", JSON.stringify(data.files));
+            } else {
+                console.error("フォーム取得失敗:", data);
+            }
+        } catch (err) {
+            console.error("fetchエラー:", err);
+        }
+    };
+
     return (
         <div>
-            <Title title={"アンケート"} text={"追加"} />
-            <div className="question-box">
-                {test_data.map((element, index) => {
-                    return (
-                        <QuestionCard
-                            props={element}
-                            key={index}
-                            className="question-box-item"
-                        />
-                    );
-                })}
-            </div>
+            <Title
+                title={"アンケート"}
+                text={"追加"}
+                clickFunction={() => {
+                    window.open("https://docs.google.com/forms/u/0/", "_blank");
+                }}
+            />
+            {!loaded && (
+                <div className="question-load-button">
+                    <div className="button">
+                        <Button text="フォーム取得" Clickfunction={fetchForms} />
+                    </div>
+                </div>
+            )}
+            {loaded && (
+                <div className="question-box">
+                    {forms.map((form, index) => {
+                        const element = {
+                            title: form.name,
+                            url: `https://docs.google.com/forms/d/${form.id}/viewform`,
+                        };
+                        return (
+                            <QuestionCard
+                                props={element}
+                                key={index}
+                                className="question-box-item"
+                            />
+                        );
+                    })}
+                </div>
+            )}
             <div className="question-button">
                 <Button
                     logotype={"home"}

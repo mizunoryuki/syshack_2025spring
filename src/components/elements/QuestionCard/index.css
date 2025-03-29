@@ -1,59 +1,56 @@
-.questionCard-container {
-    border: 1px solid var(--color-gray);
-    border-radius: var(--radius-10);
-    padding: 24px;
-
+.questionCard {
     display: flex;
-    flex-direction: row;
-    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 1.5rem;
+    border-radius: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     width: 300px;
-    box-sizing: border-box;
-}
-.questionCard-container-title {
-    font-size: var(--font-size-20);
-    margin: 0;
-    width: 8rem;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    height: 120px;
+    padding: 1rem;
 }
 
-.questionCard-container-button-container {
-    margin-top: 10px;
-    width: 100%;
+.card-left {
     display: flex;
-    justify-content: end;
-}
-.questionCard-container-button {
-    color: var(--color-purple);
-    background-color: var(--color-white);
-    border: 1px solid var(--color-purple);
-    font-size: var(--font-size-7);
-    font-weight: var(--font-weight-bold);
-    padding: 6px;
-    border-radius: var(--radius-3);
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
 }
 
-.questionCard-container-button:hover {
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: #111827;
+}
+
+.questionCard-button {
+    background-color: #6366f1;
+    color: #fff;
+    padding: 8px 16px;
     border: none;
-    color: var(--color-white);
-    background-color: var(--color-purple);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: fit-content;
 }
 
-.questionCard-container-url {
-    width: 80px;
-    height: 80px;
-    background-color: var(--color-white);
-    border-radius: var(--radius-10);
+.questionCard-button:hover {
+    background-color: #4f46e5;
 }
 
-.questionCard-center {
-    background-color: black;
+.card-divider {
     width: 1px;
+    height: 80%;
+    background-color: #e5e7eb;
+    margin: 0 1rem;
 }
 
-.questionCard-right {
-    background-color: var(--color-green-1);
-    padding: 8px;
-    border-radius: var(--radius-10);
+.card-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
