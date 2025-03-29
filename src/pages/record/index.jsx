@@ -48,21 +48,31 @@ export default function Record() {
       console.log("取得したイベントデータ:", eventsData);
 
       // APIから取得したデータを表示用に変換
-      const formattedRecords = eventsData.map((record) => ({
-        id: record.id, // IDも保存しておく
-        date: record.date
-          ? new Date(record.date.seconds * 1000).toLocaleDateString()
-          : "日付なし",
-        title: record.event || "タイトルなし",
-        maxdB: record.maxdB || 0,
-        volumeArray: record.dBArray || [],
-        peakTime: record.peak
-          ? typeof record.peak === "string"
-            ? convertTimeToSeconds(record.peak)
-            : record.peak
-          : 0,
-        excitedLevel: record.excitedLevel || 0,
-      }));
+      const formattedRecords = eventsData.map((record) => {
+        const dateObj = record.date
+          ? new Date(record.date.seconds * 1000)
+          : null;
+        const formattedDate = dateObj
+          ? `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(
+              2,
+              "0"
+            )}-${String(dateObj.getDate()).padStart(2, "0")}`
+          : "日付なし";
+
+        return {
+          id: record.id, // IDも保存しておく
+          date: formattedDate,
+          title: record.event || "タイトルなし",
+          maxdB: record.maxdB || 0,
+          volumeArray: record.dBArray || [],
+          peakTime: record.peak
+            ? typeof record.peak === "string"
+              ? convertTimeToSeconds(record.peak)
+              : record.peak
+            : 0,
+          excitedLevel: record.excitedLevel || 0,
+        };
+      });
 
       setRecords(formattedRecords);
     } catch (error) {
