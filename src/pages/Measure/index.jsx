@@ -3,10 +3,18 @@ import Meter from "../../components/elements/Meter";
 import Title from "../../components/elements/Title";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
+import useCountTime from "../../hooks/timerhook";
 
 export default function Measure() {
     const navigate = useNavigate();
     const [isdone, setIsdone] = useState(false);
+    const { count, isRunning, dBArray, startTimer, finishMeasure, showdB } =
+        useCountTime();
+
+    const handleFinishTimer = () => {
+        finishMeasure();
+        setIsdone(true);
+    };
     return (
         <div
             className="measure-container"
@@ -17,9 +25,20 @@ export default function Measure() {
             <Title
                 title={"音量測定"}
                 text={isdone ? "結果を表示" : ""}
-                clickFunction={() => navigate("/result")}
+                clickFunction={() =>
+                    navigate("/result", {
+                        state: { time: count, volume: dBArray },
+                    })
+                }
             />
-            <Meter isdone={isdone} setIsdone={setIsdone} />
+            <Meter
+                isdone={isdone}
+                isRunning={isRunning}
+                showdB={showdB}
+                count={count}
+                onStart={startTimer}
+                onFinish={handleFinishTimer}
+            />
         </div>
     );
 }

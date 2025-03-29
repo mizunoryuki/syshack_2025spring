@@ -5,9 +5,10 @@ import Button from "../../components/elements/Button";
 import "./index.css";
 import { useState } from "react";
 import Modal from "../../components/elements/Modal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 export default function Result() {
     const navigate = useNavigate();
+    const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState("");
 

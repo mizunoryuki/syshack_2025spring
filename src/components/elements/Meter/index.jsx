@@ -1,21 +1,9 @@
+import { memo } from "react";
 import Button from "../Button";
 import MeasureText from "../MeasureText";
 import "./index.css";
-import useCountTime from "../../../hooks/timerhook";
-export default function Meter({ isdone, setIsdone }) {
-    const { count, isRunning, avgdB, startTimer, finishMeasure, showdB } =
-        useCountTime();
 
-    const handleFinishTimer = () => {
-        finishMeasure();
-        localStorage.setItem(
-            "data",
-            JSON.stringify({ time: count, volume: avgdB })
-        );
-        console.log("save to localstorage");
-        setIsdone(true);
-    };
-
+const Meter = ({ isdone, isRunning, showdB, count, onStart, onFinish }) => {
     return (
         <div className="meter-container">
             <p>音量メーター</p>
@@ -24,28 +12,31 @@ export default function Meter({ isdone, setIsdone }) {
                     className="volume-meter"
                     style={{
                         width: `${Math.min(showdB, 100)}%`,
+                        backgroundColor:
+                            showdB <= 40
+                                ? `var(--color-green-2)`
+                                : showdB <= 80
+                                ? `var(--color-purple)`
+                                : `var(--color-green-3)`,
                     }}
                 ></div>
             </div>
             <div className="measure-text-container">
-                <MeasureText type="volume" title={"音量"} content={showdB} />
-                {/* 音量をcontentで指定して表示 */}
-                <MeasureText type="timer" title={"時間"} content={count} />
-                {/* 時間をcontentで指定して表示(1秒ごと) */}
+                <MeasureText type="volume" title="音量" content={showdB} />
+                <MeasureText type="timer" title="時間" content={count} />
             </div>
             <div className="measure-button">
-                {!isdone ? (
+                {!isdone && (
                     <Button
                         logotype={isRunning ? "stop" : "start"}
                         text={isRunning ? "計測停止" : "計測開始"}
-                        Clickfunction={() =>
-                            isRunning ? handleFinishTimer() : startTimer()
-                        }
+                        Clickfunction={isRunning ? onFinish : onStart}
                     />
-                ) : (
-                    <></>
                 )}
             </div>
         </div>
     );
-}
+};
+
+// 🎯 memo化して不要な再レンダリングを防ぐ
+export default memo(Meter);

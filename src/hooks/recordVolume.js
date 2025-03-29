@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 export default function useRecordVolume() {
     const [showdB, setshowdB] = useState(0);
+    //const showdB = useRef(0);
     const avgdBArray = useRef([]);
 
     const audioContextRef = useRef(null);
@@ -52,7 +53,7 @@ export default function useRecordVolume() {
             const dataArray = new Uint8Array(analyser.frequencyBinCount);
             let totalVolume = 0;
             let count = 0;
-            const sampleDuration = 5000; // 5秒間サンプリング
+            const sampleDuration = 5000; // サンプリング
             const startTime = performance.now();
 
             const collectData = () => {
@@ -95,6 +96,7 @@ export default function useRecordVolume() {
             //console.log("整形後:", dB);
             avgdBArray.current.push(dB);
             setshowdB(dB);
+            //showdB.current = dB;
 
             animationFrameIdRef.current = requestAnimationFrame(getVolume);
         };
